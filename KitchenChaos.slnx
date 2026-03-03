@@ -10,4 +10,5 @@
   <Project Path="VFolders.csproj" />
   <Project Path="VFavorites.csproj" />
   <Project Path="CodeMonkeyFree.csproj" />
+  <Project Path="Assembly-CSharp.csproj" />
 </Solution>
