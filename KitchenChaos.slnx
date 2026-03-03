@@ -2,7 +2,6 @@
   <Project Path="SingularityGroup.HotReload.Editor.csproj" />
   <Project Path="CodeMonkeyFreeEditor.csproj" />
   <Project Path="SingularityGroup.HotReload.Runtime.csproj" />
-  <Project Path="VHierarchy.csproj" />
   <Project Path="VTabs.csproj" />
   <Project Path="VRuler.csproj" />
   <Project Path="SingularityGroup.HotReload.Runtime.Public.csproj" />
