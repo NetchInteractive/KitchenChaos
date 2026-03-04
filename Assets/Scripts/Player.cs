@@ -13,7 +13,33 @@ public class Player : MonoBehaviour {
 
 		isWalking = moveDir != Vector3.zero;
 
-		transform.position += moveDir * Time.deltaTime * movementSpeed;
+		float playerRadius = 0.7f;
+		float playerHeight = 2f;
+		float moveDistance = movementSpeed * Time.deltaTime;
+		bool canMove = !Physics.CapsuleCast(transform.position, transform.position + Vector3.up * playerHeight, playerRadius, moveDir, moveDistance);
+
+		if (!canMove) {
+			// Attempt x movement
+			Vector3 moveDirX = new Vector3(moveDir.x, 0, 0).normalized;
+			canMove = !Physics.CapsuleCast(transform.position, transform.position + Vector3.up * playerHeight, playerRadius, moveDirX, moveDistance);
+			if (canMove) {
+				moveDir = moveDirX;
+			} else {
+				// Attempt z movement
+				Vector3 moveDirZ = new Vector3(0, 0, moveDir.z).normalized;
+				canMove = !Physics.CapsuleCast(transform.position, transform.position + Vector3.up * playerHeight, playerRadius, moveDirZ, moveDistance);
+
+				if (canMove) {
+					moveDir = moveDirZ;
+				}
+			}
+		}
+
+		if (canMove) {
+			transform.position += moveDir * moveDistance;
+		}
+
+		// Rotation
 		transform.forward = Vector3.Slerp(transform.forward, moveDir, Time.deltaTime * rotationSpeed);
 	}
 
