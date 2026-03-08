@@ -1,23 +1,25 @@
 using UnityEngine;
 
-// TODO: Implement an IInteractable interface
-public class ClearCounter : MonoBehaviour {
+public class ClearCounter : MonoBehaviour, IKitchenObjectParent {
 	[SerializeField] private Transform counterTopPoint;
 	[SerializeField] private KitchenObjectSO tomatoSO;
 
 	private KitchenObject kitchenObject;
-	public void Interact() {
+	public void Interact(Player player) {
 		if (kitchenObject == null) {
 			Transform tomato = Instantiate(tomatoSO.prefab, counterTopPoint);
-			tomato.GetComponent<KitchenObject>().SetClearCounter(this);
+			tomato.GetComponent<KitchenObject>().SetKitchenObjectParent(this);
+		} else {
+			// Give the object to the player
+			kitchenObject.SetKitchenObjectParent(player);
 		}
 	}
 
-	public Transform GetCounterTopPoint() {
+	public Transform GetKitchenObjectFollowTransform() {
 		return counterTopPoint;
 	}
 
-	public void SetKitchenObject(KitchenObject kitchenObject) {
+	public void SetKitchenObjectParent(KitchenObject kitchenObject) {
 		this.kitchenObject = kitchenObject;
 	}
 
