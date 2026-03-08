@@ -1,8 +1,15 @@
 using UnityEngine;
 
 public class ClearCounter : MonoBehaviour {
-	// TODO: Implement an interface IInteractable and make this class implement it
+	// TODO: Implement an IInteractable interface
+
+	[SerializeField] private Transform counterTopPoint;
+	[SerializeField] private KitchenObjectSO tomatoSO;
 	public void Interact() {
-		Debug.Log("Interacting with " + transform.name);
+		Transform tomato = Instantiate(tomatoSO.prefab, counterTopPoint);
+		tomato.transform.localPosition = Vector3.zero;
+
+		KitchenObjectSO so = tomato.transform.GetComponent<KitchenObject>().GetKitchenObjectSO();
+		Debug.Log(so.objectName);
 	}
 }
