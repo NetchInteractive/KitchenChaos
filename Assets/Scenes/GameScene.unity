@@ -867,6 +867,22 @@ PrefabInstance:
       propertyPath: slicedObject
       value: 
       objectReference: {fileID: 11400000, guid: 501a46bfc94d54c46b232ed031f559a8, type: 2}
+    - target: {fileID: 3084243696368553942, guid: 797219ce589a3e848b53d471e8b3bef3, type: 3}
+      propertyPath: cuttingRecipeSOArray.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3084243696368553942, guid: 797219ce589a3e848b53d471e8b3bef3, type: 3}
+      propertyPath: 'cuttingRecipeSOArray.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 6acbdbf7d4024ca48947c27568a64956, type: 2}
+    - target: {fileID: 3084243696368553942, guid: 797219ce589a3e848b53d471e8b3bef3, type: 3}
+      propertyPath: 'cuttingRecipeSOArray.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 9462437ab93584a4b90a5897c3b62cc5, type: 2}
+    - target: {fileID: 3084243696368553942, guid: 797219ce589a3e848b53d471e8b3bef3, type: 3}
+      propertyPath: 'cuttingRecipeSOArray.Array.data[2]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 5f04a3b6683f78a4d845422d55ce2b83, type: 2}
     - target: {fileID: 4852366772909048536, guid: 797219ce589a3e848b53d471e8b3bef3, type: 3}
       propertyPath: m_Name
       value: CuttingCounter
