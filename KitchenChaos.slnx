@@ -1,11 +1,11 @@
 ﻿<Solution>
   <Project Path="CodeMonkeyFreeEditor.csproj" />
+  <Project Path="Assembly-CSharp.csproj" />
   <Project Path="VTabs.csproj" />
   <Project Path="VRuler.csproj" />
   <Project Path="VInspector.csproj" />
   <Project Path="Assembly-CSharp-Editor.csproj" />
   <Project Path="VFolders.csproj" />
-  <Project Path="Assembly-CSharp.csproj" />
   <Project Path="VFavorites.csproj" />
   <Project Path="CodeMonkeyFree.csproj" />
 </Solution>
