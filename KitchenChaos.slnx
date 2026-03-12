@@ -1,6 +1,6 @@
 ﻿<Solution>
-  <Project Path="CodeMonkeyFreeEditor.csproj" />
   <Project Path="Assembly-CSharp.csproj" />
+  <Project Path="CodeMonkeyFreeEditor.csproj" />
   <Project Path="VTabs.csproj" />
   <Project Path="VRuler.csproj" />
   <Project Path="VInspector.csproj" />
