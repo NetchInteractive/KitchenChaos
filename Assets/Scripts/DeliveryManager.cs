@@ -1,13 +1,16 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class DeliveryManager : MonoBehaviour {
+	public event EventHandler OnRecipeAdded;
+	public event EventHandler OnRecipeRemoved;
+
 	[SerializeField] private RecipeListSO recipeListSO;
 
 	public static DeliveryManager Instance;
 
 	private List<RecipeSO> waitingRecipeSOList;
-
 
 	private float spawnRecipeTimer = 0f;
 	private float spawnRecipeTimerMax = 4f;
@@ -32,8 +35,8 @@ public class DeliveryManager : MonoBehaviour {
 
 			if (waitingRecipeSOList.Count < waitingRecipeMax) {
 				// Spawn a recipe
-				waitingRecipeSOList.Add(recipeListSO.recipeSOList[Random.Range(0, recipeListSO.recipeSOList.Count - 1)]);
-				Debug.Log($"Added {waitingRecipeSOList[waitingRecipeSOList.Count - 1].recipeName}");
+				waitingRecipeSOList.Add(recipeListSO.recipeSOList[UnityEngine.Random.Range(0, recipeListSO.recipeSOList.Count)]);
+				OnRecipeAdded?.Invoke(this, EventArgs.Empty);
 			}
 		}
 	}
@@ -41,21 +44,19 @@ public class DeliveryManager : MonoBehaviour {
 	public void DeliverRecipe(PlateKitchenObject plateKitchenObject) {
 		for (int i = 0; i < waitingRecipeSOList.Count; i++) {
 			RecipeSO waitingRecipeSO = waitingRecipeSOList[i];
-			Debug.Log($"Checking waitingRecipeSO {waitingRecipeSO.recipeName}");
 
 			if (waitingRecipeSO.kitchenObjectSOList.Count == plateKitchenObject.GetKitchenObjectSOList.Count) {
 
 				bool hasAllIngredients = true;
 				foreach (var recipeIngredient in waitingRecipeSO.kitchenObjectSOList) {
 					if (!plateKitchenObject.GetKitchenObjectSOList.Contains(recipeIngredient)) {
-						Debug.Log($"Plate is missing {recipeIngredient.objectName} for {waitingRecipeSO.recipeName}");
 						hasAllIngredients = false;
 					}
 				}
 
 				if (hasAllIngredients) {
-					Debug.Log("Success");
 					waitingRecipeSOList.RemoveAt(i);
+					OnRecipeRemoved?.Invoke(this, EventArgs.Empty);
 					return;
 				}
   			}
@@ -64,4 +65,6 @@ public class DeliveryManager : MonoBehaviour {
 		// No matches found, the player did not deliver a correct recipe
 		Debug.Log($"No matches found");
 	}
+
+	public List<RecipeSO> GetWaitingRecipeSOList => waitingRecipeSOList;
 }

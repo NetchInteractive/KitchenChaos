@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Salad
   m_EditorClassIdentifier: Assembly-CSharp::RecipeSO
   kitchenObjectSOList:
-  - {fileID: 11400000, guid: 78a7f65392a3b294f9340df775906617, type: 2}
+  - {fileID: 11400000, guid: 501a46bfc94d54c46b232ed031f559a8, type: 2}
   - {fileID: 11400000, guid: 528d868f303e82a40ae0c82b1e95e153, type: 2}
   recipeName: Salad
