@@ -27,7 +27,7 @@ public class DeliveryManagerUI : MonoBehaviour {
 			Destroy(t.gameObject);
 		}
 
-		foreach (var recipeSO in DeliveryManager.Instance.GetWaitingRecipeSOList) {
+		foreach (var recipeSO in DeliveryManager.Instance.GetWaitingRecipeSOList()) {
 			Transform recipeTransform = Instantiate(recipeTemplate, container);
 			recipeTransform.gameObject.SetActive(true);
 
