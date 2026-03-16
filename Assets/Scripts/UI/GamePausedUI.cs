@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public class GamePausedUI : MonoBehaviour {
 	[SerializeField] private Button mainMenuButton;
+	[SerializeField] private Button optionsButton;
 	[SerializeField] private Button resumeButton;
 
 	private void Start() {
@@ -16,6 +17,10 @@ public class GamePausedUI : MonoBehaviour {
 
 		resumeButton.onClick.AddListener(() => {
 			KitchenGameManager.Instance.TogglePauseGame();
+		});
+
+		optionsButton.onClick.AddListener(() => {
+			OptionsUI.Instance.Show();
 		});
 
 		Hide();
