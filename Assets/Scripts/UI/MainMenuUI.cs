@@ -14,5 +14,8 @@ public class MainMenuUI : MonoBehaviour {
 		quitButton.onClick.AddListener(() => {
 			Application.Quit();
 		});
+
+		// Reset the timescale in case the player returned from the pause menu
+		Time.timeScale = 1f;
 	}
 }

@@ -4,6 +4,9 @@ using UnityEngine;
 public class KitchenGameManager : MonoBehaviour {
 	public static KitchenGameManager Instance { get; private set; }
 
+	public event EventHandler OnGamePaused;
+	public event EventHandler OnGameUnpaused;
+
 	public event EventHandler OnStateChanged;
 
 	private enum State { 
@@ -19,9 +22,19 @@ public class KitchenGameManager : MonoBehaviour {
 	private float gamePlayingTimer;
 	private float gamePlayingTimerMax = 10f;
 
+	private bool isGamePaused;
+
 	private void Awake() {
 		Instance = this;
 		state = State.WaitingToStart;
+	}
+
+	private void Start() {
+		GameInput.Instance.OnPauseAction += GameInput_OnPauseAction;
+	}
+
+	private void GameInput_OnPauseAction(object sender, EventArgs e) {
+		TogglePauseGame();
 	}
 
 	private void Update() {
@@ -52,8 +65,6 @@ public class KitchenGameManager : MonoBehaviour {
 
 				break;
 		}
-
-		Debug.Log(state);
 	}
 
 	private void ChangeState(State state) {
@@ -80,5 +91,16 @@ public class KitchenGameManager : MonoBehaviour {
 	public float GetGamePlayingTimerNormalized() {
 		// Invert since we're counting down
 		return 1 - (gamePlayingTimer / gamePlayingTimerMax);
+	}
+
+	public void TogglePauseGame() {
+		isGamePaused = !isGamePaused;
+		if (isGamePaused) { 
+			Time.timeScale = 0f;
+			OnGamePaused?.Invoke(this, EventArgs.Empty);
+		} else {
+			Time.timeScale = 1f;
+			OnGameUnpaused?.Invoke(this, EventArgs.Empty);
+		}
 	}
 }

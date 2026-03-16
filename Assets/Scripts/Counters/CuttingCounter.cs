@@ -4,6 +4,11 @@ using UnityEngine;
 public class CuttingCounter : BaseCounter, IHasProgress {
 
 	public static event EventHandler OnAnyCut; // Every CuttingCounter fires this for the SoundManager
+
+	new public static void ResetStaticData() {
+		OnAnyCut = null; // Clear all of the listeners
+	}
+
 	public event EventHandler OnCut; // Each CuttingCounter also fires its own event for the visuals
 	public event EventHandler<IHasProgress.OnProgressChangedEventArgs> OnProgressChanged;
 
