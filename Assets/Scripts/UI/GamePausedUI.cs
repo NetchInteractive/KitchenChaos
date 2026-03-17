@@ -20,12 +20,13 @@ public class GamePausedUI : MonoBehaviour {
 		});
 
 		optionsButton.onClick.AddListener(() => {
-			OptionsUI.Instance.Show();
+			Hide();
+			OptionsUI.Instance.Show(Show);
 		});
 
 		Hide();
 	}
-
+	
 	private void KitchenGameManager_OnGameUnpaused(object sender, System.EventArgs e) {
 		Hide();
 	}
@@ -36,6 +37,10 @@ public class GamePausedUI : MonoBehaviour {
 
 	private void Show() { 
 		gameObject.SetActive(true);
+
+		// Select the first button for gamepad support
+		// This ensures the user can navigate using a gamepad
+		resumeButton.Select();
 	}
 
 	private void Hide() {
